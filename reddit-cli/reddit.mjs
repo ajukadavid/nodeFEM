@@ -1,3 +1,12 @@
 #! /usr/bin/env node
+import fetch from "node-fetch";
+import open from 'open'
+import yargs from "yargs";
 
-console.log("hello from the reddit cli")
+const { argv } = yargs(process.argv)
+
+const res = await fetch('https://reddit.com/.json')
+const data = await res.json()
+
+
+console.log(data)
