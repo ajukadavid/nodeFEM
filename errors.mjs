@@ -1,9 +1,8 @@
 import { readFile } from "fs";
 
-readFile(new URL('app.mj', import.meta.url), 'utf-8', (err, res) => {
-    if(err){
-        console.log(err)
-    } else {
-
-    }
+process.on('uncaughtException', (e) => {
+     console.log(e)
 })
+
+const result = await readFile(new URL('app.mj', import.meta.url), 'utf-8')
+
