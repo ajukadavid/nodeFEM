@@ -19,6 +19,11 @@ const server = http.createServer((req, res) => {
         res.writeHead(201)
         res.end('ok')
     } else {
-         res.end('ok')
-    }
+        res.writeHead(200)
+        res.end('ok')
+    } 
+})
+
+server.listen(port, host, () => {
+    console.log(`Server on ${host}:${port}`)
 })
