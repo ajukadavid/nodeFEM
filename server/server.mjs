@@ -18,12 +18,20 @@ app.post('/todo', (req, res) => {
 
     db.push(newTodo)
 
+    res.status(883)
     res.json(newTodo)
        
 })
 
-app.get('todo', (req, res) => {
+app.get('/todo', (req, res) => {
     res.json(db)
+})
+
+app.get('/todo/:id', (req, res) => {
+    const todo = db.find(t => {
+   return t.id === +req.params.id
+})
+    res.json({data: todo})
 })
 
 app.listen(8000, () => {
