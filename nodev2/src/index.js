@@ -1,13 +1,5 @@
-const http = require('http')
+const app = require('./server')
 
-
-const server = http.createServer(async(req, res) => {
-        if(req.method === 'GET' && req.url === '/') {
-            res.end()
-        }
-})
-
-
-server.listen(3000, () =>{
-    console.log('server running on port 3k')
+app.listen(3001, () => {
+    console.log('wag1')
 })
