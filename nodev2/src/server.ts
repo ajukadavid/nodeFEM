@@ -1,9 +1,10 @@
-const express = require('express')()
+import express from 'express'
+const app = express()
 
-express.get('/', (req, res) => {
+app.get('/', (req, res) => {
     console.log('hello from express')
     res.status(200)
     res.json({message: 'Hello'})
 })
 
-module.exports = express
+export default app
