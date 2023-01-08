@@ -4,9 +4,9 @@ const router = Router()
 
 //PRODUCTS
 
-router.get('/products', () => {
-
-})
+router.get("/product", (req, res) => {
+    res.json({ message: "product" });
+  });
 router.get('/product/:id', () => {
     
 })
