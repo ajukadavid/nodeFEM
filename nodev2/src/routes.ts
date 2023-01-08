@@ -58,3 +58,5 @@ router.post('/updatepoint', () => {
 router.delete('/updatepoint/:id', () => {
     
 })
+
+export default router
