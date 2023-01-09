@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { body, oneOf, validationResult } from "express-validator";
 import { createProduct, deleteProduct, getOneProduct, getProducts } from './handlers/product';
+import { getUpdates } from './handlers/updates';
 import { handleInputErrors } from './modules/middleware';
  
 const router = Router()
@@ -18,9 +19,12 @@ router.delete('/product/:id', deleteProduct)
 
 //UPDATES
 
-router.get('/update', () => {
-
-})
+router.get('/update',
+body('title').exists().isString(),
+body('body').exists().isString(),
+body('productId').exists().isString()
+,
+)
 router.get('/update/:id', () => {
     
 })
@@ -31,6 +35,8 @@ router.put('/update/:id',
  body('version').optional(), () => {
     
 })
+
+
 router.post('/update',
 body('title').exists().isString(),
 body('body').exists().isString(), () => {
@@ -56,7 +62,7 @@ router.put('/updatepoint/:id',
     
 })
 router.post('/updatepoint',
- body('name').isString(),
+body('name').isString(),
 body('description').isString(),
 body('updateId').exists().isString(),
 () => {
