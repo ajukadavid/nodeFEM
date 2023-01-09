@@ -1,14 +1,13 @@
 import { Router } from 'express'
 import { body, oneOf, validationResult } from "express-validator";
+import { getProducts } from './handlers/product';
 import { handleInputErrors } from './modules/middleware';
  
 const router = Router()
 
 //PRODUCTS
 
-router.get("/product", (req, res) => {
-    res.json({ message: 'niceeee from vue' });
-  });
+router.get("/product", getProducts)
 router.get('/product/:id', () => {
     
 })
