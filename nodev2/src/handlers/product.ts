@@ -12,7 +12,7 @@ export const getProducts = async (req, res) => {
         }
     })
 
-    res.json({ data: user})
+    res.json({ data: user.product})
 }
 
 //Get one product
