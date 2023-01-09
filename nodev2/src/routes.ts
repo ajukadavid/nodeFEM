@@ -5,7 +5,7 @@ const router = Router()
 //PRODUCTS
 
 router.get("/product", (req, res) => {
-    res.json({ message: req.hello });
+    res.json({ message: 'niceeee from vue' });
   });
 router.get('/product/:id', () => {
     
