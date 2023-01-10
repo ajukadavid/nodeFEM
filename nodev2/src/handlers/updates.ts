@@ -25,23 +25,29 @@ export const getUpdates = async (req, res) => {
         return [...allUpdates, product.update]
     }, [])
 
-    res.json({data: updates})
+    res.json({data: updates[0]})
 }
 
 export const createUpdate = async (req, res) => {
-    const product = prisma.product.findUnique({
+    const product = await prisma.product.findUnique({
         where: {
-            id: req.body.id
+            id: req.body.productId
         }
-    })
-
-    if(!product){
+      })
+    
+      if (!product) {
+        // does not belong to user
         return res.json({message: 'nope'})
-    }
-
-    const update = await prisma.update.create({
-      data: req.body
-    })
+      }
+    
+      const update = await prisma.update.create({
+        data: {
+          title: req.body.title,
+          body: req.body.body,
+          product: {connect: {id: product.id}}
+        }
+      })
+    
 
     res.json({data: update})
 }
@@ -59,7 +65,7 @@ export const updateUpdate = async (req, res) => {
         return [...allUpdates, product.update]
     }, [])
 
-    const match = updates.find((update) => update.id === req.params.id)
+    const match = updates[0].find((update) => update.id === req.params.id)
 
     if(!match){
         res.json({message: 'no match'})
@@ -90,7 +96,7 @@ export const deleteUpdate = async (req, res) => {
         return [...allUpdates, product.update]
     }, [])
 
-    const match = updates.find((update) => update.id === req.params.id)
+    const match = updates[0].find((update) => update.id === req.params.id)
 
     if(!match){
         res.json({message: 'no match'})

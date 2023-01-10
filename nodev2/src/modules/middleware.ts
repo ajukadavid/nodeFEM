@@ -5,7 +5,7 @@ import { body, validationResult } from "express-validator";
 
     if(!errors.isEmpty()){
         res.status(400)
-        res.json({erros: errors.array()})
+        res.json({errors: errors.array()})
     } else {
         next()
     }
