@@ -24,8 +24,9 @@ app.post('/user', createNewUser)
 app.post('/signin', signIn)
 
 app.use((err, req, res, next) => {
-    console.log(err)
-    res.json({message: 'oops there was an error'})
+   if(err.type === 'auth'){
+    res.status(401)
+   }
 })
 export default app
 
